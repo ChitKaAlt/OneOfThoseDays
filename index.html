@@ -1,0 +1,171 @@
+﻿<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=yes" />
+    <title>for neha ♡</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="app">
+        <!-- ─── SCREEN 1: OPENING ─── -->
+        <div id="screen-opening" class="screen active">
+            <div class="screen-content">
+                <div class="illustration">
+                    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="60" cy="60" r="50" fill="#F7D6DF" opacity="0.3" />
+                        <path d="M60 30C48 18 28 20 20 34C12 48 16 62 28 72L60 100L92 72C104 62 108 48 100 34C92 20 72 18 60 30Z" fill="#E9A9B8" opacity="0.6" />
+                        <path d="M60 38C52 30 38 32 32 42C26 52 30 62 38 68L60 86L82 68C90 62 94 52 88 42C82 32 68 30 60 38Z" fill="#C95C68" opacity="0.5" />
+                        <path d="M60 46C55 41 46 42 43 48C40 54 43 60 48 63L60 72L72 63C77 60 80 54 77 48C74 42 65 41 60 46Z" fill="#C95C68" />
+                        <circle cx="60" cy="52" r="4" fill="#FFF8F0" opacity="0.7" />
+                        <path d="M52 48L48 44M68 48L72 44" stroke="#FFF8F0" stroke-width="2" stroke-linecap="round" opacity="0.5" />
+                        <circle cx="46" cy="42" r="2" fill="#FFF8F0" opacity="0.4" />
+                        <circle cx="74" cy="42" r="2" fill="#FFF8F0" opacity="0.4" />
+                    </svg>
+                </div>
+                <div class="big-hello handwritten">
+                    omgggggg hiiiiiiii <span class="name">Nehaaaaaaaa</span> ♡
+                </div>
+                <div class="sub-text">
+                    so ik k next coming 3-4 days will suck.<br />
+                    dimag vagera kaam nahi karge and shit<br />
+                    <br />
+                    and its okay<br />
+                    its just one of those days<br />
+                    you dont have to do everything today<br />
+                    <span class="highlight">dont let it get to your head : )</span>
+                </div>
+                <div class="btn-wrapper">
+                    <button class="btn btn-primary" id="btn-open-itinerary">
+                        aaj ki checklist →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── SCREEN 2: ITINERARY ─── -->
+        <div id="screen-itinerary" class="screen">
+            <div class="screen-content scrollable">
+                <div class="itinerary-title handwritten">
+                    <span class="deco">🎀</span> today's itinerary
+                </div>
+                <ul class="checklist">
+                    <li>drink lots of water</li>
+                    <li>sleep if you can</li>
+                    <li>don't overthink shit</li>
+                    <li>don't be hard on yourself</li>
+                    <li>you don't have to be productive today</li>
+                </ul>
+                <div class="checklist-sub">
+                    that's it. that's the itinerary.<br />
+                    very difficult. i know.
+                </div>
+                <!-- deal section -->
+                <div class="deal-section" id="deal-section">
+                    <div class="deal-text">
+                        aaj bas <strong>dont be too hard on yourself</strong>
+                    </div>
+                    <div class="deal-check" id="deal-check" role="button" tabindex="0" aria-label="Accept deal">
+                        <span class="box" id="deal-box">☐</span>
+                        <span class="label">deal ♡</span>
+                    </div>
+                    <div id="deal-done" style="display:none;" class="deal-done">
+                       Acchi bacchi, jao paani peeke aao
+                    </div>
+                </div>
+                <!-- options -->
+                <div class="options-grid">
+                    <button class="btn" id="btn-hug">
+                        <span class="emoji-big">🫂</span>
+                        <span class="label-text">virtual hug</span>
+                    </button>
+                    <button class="btn" id="btn-game">
+                        <span class="emoji-big">🎮</span>
+                        <span class="label-text">distract me</span>
+                    </button>
+                    <button class="btn" id="btn-quiet">
+                        <span class="emoji-big">🌙</span>
+                        <span class="label-text">leave me alone for a while</span>
+                    </button>
+                </div>
+                <div style="height:8px;"></div>
+            </div>
+        </div>
+
+        <!-- ─── SCREEN 3: VIRTUAL HUG ─── -->
+        <div id="screen-hug" class="screen">
+            <button class="hug-back-btn" id="hug-back-btn">← back</button>
+            <div class="hug-container">
+                <div class="hug-heart" id="hug-main-heart">❤️</div>
+                <div class="hug-title handwritten">big virtual hug</div>
+                <div class="hug-squeeze handwritten">squeeze squeeze ♡</div>
+                <div class="hug-message" id="hug-message">
+                    okay you can leave the hug now<br />
+                    i'm letting go reluctantly
+                </div>
+                <div class="hug-actions">
+                    <button class="btn btn-primary" id="hug-ok-btn">okay okay ♡</button>
+                </div>
+            </div>
+            <div id="hug-hearts-container" style="position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;"></div>
+        </div>
+
+        <!-- ─── SCREEN 4: GAME ─── -->
+        <div id="screen-game" class="screen">
+            <div class="game-header">
+                <span class="game-title handwritten">distraction mode 🎀</span>
+                <span class="game-score" id="game-score-display">score: 0</span>
+            </div>
+            <div class="game-canvas-wrap">
+                <canvas id="game-canvas"></canvas>
+                <div class="game-tap-hint">tap to fly ♡</div>
+                <!-- overlay -->
+                <div class="game-overlay" id="game-overlay">
+                    <div class="big-emoji" id="game-overlay-emoji">NOOO 😭</div>
+                    <div class="overlay-title handwritten" id="game-overlay-title">one more try.</div>
+                    <div class="overlay-sub" id="game-overlay-sub">okay okay...</div>
+                    <button class="btn btn-primary" id="game-retry-btn">try again ♡</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── SCREEN 5: QUIET ─── -->
+        <div id="screen-quiet" class="screen">
+            <div class="screen-content">
+                <div class="quiet-moon">🌙</div>
+                <div class="quiet-title handwritten">okay ♡</div>
+                <div class="quiet-text">
+                    take your time.<br />
+                    you don't have to talk to me right now.<br />
+                    <br />
+                    don't be hard on yourself.<br />
+                    get some rest, drink some water, and just take it easy.<br />
+                    <br />
+                    <span class="highlight">and if it starts feeling like too much, text me.</span><br />
+                    i'll be here.
+                </div>
+                <div class="quiet-mwa">mwaaaaa</div>
+                <div class="quiet-btn-wrap">
+                    <button class="btn btn-primary" id="quiet-ok-btn">okay ♡</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── decorative stars (fixed) ─── -->
+        <div class="stars-deco" style="top:6%;left:6%;font-size:1.4rem;">✦</div>
+        <div class="stars-deco" style="bottom:10%;right:5%;font-size:1.0rem;">♡</div>
+        <div class="stars-deco" style="top:18%;right:8%;font-size:0.9rem;">✧</div>
+        <div class="stars-deco" style="bottom:22%;left:4%;font-size:1.2rem;">✦</div>
+        <div class="stars-deco" style="top:45%;left:3%;font-size:0.7rem;">♡</div>
+        <div class="stars-deco" style="top:55%;right:3%;font-size:0.8rem;">✧</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
