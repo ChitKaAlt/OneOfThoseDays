@@ -1,19 +1,1169 @@
-﻿<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=yes" />
     <title>for neha ♡</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* ── reset ── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: #FFF8F0;
+            color: #5A4141;
+            min-height: 100dvh;
+            min-height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+            touch-action: manipulation;
+        }
+
+        /* ── app wrapper ── */
+        #app {
+            width: 100%;
+            max-width: 480px;
+            height: 100dvh;
+            height: 100vh;
+            max-height: 900px;
+            position: relative;
+            overflow: hidden;
+            background: #FFF8F0;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.6s ease;
+            border-radius: 0;
+            box-shadow: 0 0 40px rgba(90, 65, 65, 0.06);
+        }
+
+        @media (min-width: 500px) {
+            #app {
+                border-radius: 32px;
+                height: 90dvh;
+                max-height: 800px;
+                box-shadow: 0 20px 60px rgba(90, 65, 65, 0.10);
+            }
+        }
+
+        /* ── screens ── */
+        .screen {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 28px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform: scale(0.96);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+            .screen::-webkit-scrollbar {
+                display: none;
+            }
+
+            .screen.active {
+                opacity: 1;
+                pointer-events: auto;
+                transform: scale(1);
+            }
+
+            .screen.exit {
+                opacity: 0;
+                transform: scale(0.94);
+                pointer-events: none;
+            }
+
+        /* ── scrollable content ── */
+        .screen-content {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 0;
+            flex: 1;
+        }
+
+        /* ── typography ── */
+        .handwritten {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 600;
+        }
+
+        .handwritten-bold {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+        }
+
+        .body-text {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 400;
+        }
+
+        .body-medium {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 500;
+        }
+
+        .body-semibold {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+        }
+
+        /* ── colors ── */
+        .bg-cream {
+            background: #FFF8F0;
+        }
+
+        .bg-beige {
+            background: #E8D5C4;
+        }
+
+        .bg-pink {
+            background: #F7D6DF;
+        }
+
+        .bg-softpink {
+            background: #E9A9B8;
+        }
+
+        .bg-softred {
+            background: #C95C68;
+        }
+
+        .text-brown {
+            color: #5A4141;
+        }
+
+        .text-softred {
+            color: #C95C68;
+        }
+
+        .text-pink {
+            color: #E9A9B8;
+        }
+
+        /* ── buttons ── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 60px;
+            background: #E9A9B8;
+            color: #FFF8F0;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 16px rgba(201, 92, 104, 0.20);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-touch-callout: none;
+            min-height: 56px;
+            letter-spacing: 0.02em;
+            position: relative;
+        }
+
+            .btn:active {
+                transform: scale(0.94);
+                box-shadow: 0 2px 8px rgba(201, 92, 104, 0.15);
+            }
+
+        .btn-primary {
+            background: #C95C68;
+            color: #FFF8F0;
+            box-shadow: 0 4px 20px rgba(201, 92, 104, 0.30);
+        }
+
+            .btn-primary:active {
+                background: #b84e5a;
+            }
+
+        .btn-soft {
+            background: #F7D6DF;
+            color: #5A4141;
+            box-shadow: 0 2px 12px rgba(201, 92, 104, 0.10);
+        }
+
+            .btn-soft:active {
+                background: #edc8d3;
+            }
+
+        .btn-outline {
+            background: transparent;
+            color: #5A4141;
+            box-shadow: inset 0 0 0 2px #E8D5C4;
+        }
+
+            .btn-outline:active {
+                background: #F7D6DF;
+            }
+
+        .btn-small {
+            font-size: 0.9rem;
+            padding: 10px 22px;
+            min-height: 44px;
+        }
+
+        .btn-tiny {
+            font-size: 0.8rem;
+            padding: 8px 16px;
+            min-height: 36px;
+            border-radius: 40px;
+        }
+
+        /* ── opening screen ── */
+        #screen-opening .big-hello {
+            font-size: 2.4rem;
+            line-height: 1.2;
+            text-align: center;
+            margin-bottom: 6px;
+            color: #5A4141;
+        }
+
+            #screen-opening .big-hello .name {
+                color: #C95C68;
+            }
+
+        #screen-opening .sub-text {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            text-align: center;
+            color: #6f5353;
+            margin-top: 4px;
+        }
+
+            #screen-opening .sub-text .highlight {
+                color: #C95C68;
+                font-weight: 600;
+            }
+
+        #screen-opening .btn-wrapper {
+            margin-top: 24px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+            #screen-opening .btn-wrapper .btn {
+                font-size: 1.2rem;
+                padding: 16px 36px;
+                min-height: 64px;
+                width: 100%;
+                max-width: 300px;
+                animation: gentle-pulse 2.4s ease-in-out infinite;
+            }
+
+        @keyframes gentle-pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.03);
+            }
+        }
+
+        /* ── illustration ── */
+        .illustration {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+            .illustration svg {
+                width: 100%;
+                height: 100%;
+                filter: drop-shadow(0 4px 12px rgba(201, 92, 104, 0.12));
+            }
+
+        /* ── itinerary ── */
+        #screen-itinerary .itinerary-title {
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 16px;
+            color: #5A4141;
+        }
+
+            #screen-itinerary .itinerary-title .deco {
+                font-size: 1.6rem;
+            }
+
+        .checklist {
+            width: 100%;
+            list-style: none;
+            padding: 0;
+            margin: 4px 0 12px 0;
+        }
+
+            .checklist li {
+                font-family: 'Quicksand', sans-serif;
+                font-weight: 500;
+                font-size: 1.05rem;
+                padding: 8px 0 8px 32px;
+                position: relative;
+                color: #5A4141;
+                line-height: 1.4;
+                border-bottom: 1px solid rgba(232, 213, 196, 0.35);
+            }
+
+                .checklist li::before {
+                    content: '♡';
+                    position: absolute;
+                    left: 4px;
+                    top: 8px;
+                    color: #E9A9B8;
+                    font-size: 1.1rem;
+                }
+
+                .checklist li:last-child {
+                    border-bottom: none;
+                }
+
+        .checklist-sub {
+            font-size: 0.95rem;
+            color: #8a6e6e;
+            text-align: center;
+            margin-top: 4px;
+            font-weight: 400;
+        }
+
+        /* ── deal section ── */
+        .deal-section {
+            width: 100%;
+            margin: 18px 0 14px 0;
+            padding: 16px 20px;
+            background: rgba(247, 214, 223, 0.30);
+            border-radius: 20px;
+            border: 1.5px dashed #E9A9B8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+            .deal-section .deal-text {
+                font-family: 'Quicksand', sans-serif;
+                font-weight: 500;
+                font-size: 1.0rem;
+                color: #5A4141;
+                text-align: center;
+                line-height: 1.5;
+            }
+
+        .deal-check {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-touch-callout: none;
+            padding: 4px 12px 4px 4px;
+            border-radius: 40px;
+            transition: background 0.2s;
+        }
+
+            .deal-check:active {
+                background: rgba(233, 169, 184, 0.15);
+            }
+
+            .deal-check .box {
+                width: 28px;
+                height: 28px;
+                border-radius: 8px;
+                border: 2.5px solid #C95C68;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: #C95C68;
+                transition: all 0.25s ease;
+                flex-shrink: 0;
+                background: #FFF8F0;
+            }
+
+                .deal-check .box.checked {
+                    background: #C95C68;
+                    color: #FFF8F0;
+                    border-color: #C95C68;
+                }
+
+            .deal-check .label {
+                font-family: 'Quicksand', sans-serif;
+                font-weight: 600;
+                font-size: 1.05rem;
+                color: #5A4141;
+            }
+
+        .deal-done {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: #C95C68;
+            text-align: center;
+            animation: gentle-fade 0.5s ease;
+        }
+
+        @keyframes gentle-fade {
+            0% {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ── options grid ── */
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            margin: 8px 0 4px 0;
+        }
+
+            .options-grid .btn {
+                width: 100%;
+                justify-content: center;
+                font-size: 1.05rem;
+                padding: 16px 20px;
+                min-height: 58px;
+                background: #FFF8F0;
+                color: #5A4141;
+                box-shadow: 0 2px 12px rgba(90, 65, 65, 0.06);
+                border: 1.5px solid #E8D5C4;
+                border-radius: 20px;
+            }
+
+                .options-grid .btn:active {
+                    transform: scale(0.97);
+                    background: #F7D6DF;
+                }
+
+                .options-grid .btn .emoji-big {
+                    font-size: 1.4rem;
+                }
+
+                .options-grid .btn .label-text {
+                    font-weight: 600;
+                }
+
+        /* ── hug screen ── */
+        #screen-hug {
+            background: #F7D6DF;
+            justify-content: center;
+        }
+
+            #screen-hug .hug-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                flex: 1;
+                position: relative;
+                padding: 20px 0;
+            }
+
+            #screen-hug .hug-heart {
+                font-size: 6rem;
+                animation: hug-heart-pulse 1.6s ease-in-out infinite;
+                filter: drop-shadow(0 8px 32px rgba(201, 92, 104, 0.20));
+                line-height: 1;
+                margin-bottom: 12px;
+                position: relative;
+                z-index: 2;
+            }
+
+        @keyframes hug-heart-pulse {
+            0%, 100% {
+                transform: scale(1) rotate(-2deg);
+            }
+
+            50% {
+                transform: scale(1.08) rotate(2deg);
+            }
+        }
+
+        #screen-hug .hug-title {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            font-size: 2.4rem;
+            color: #C95C68;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        #screen-hug .hug-squeeze {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 400;
+            font-size: 1.5rem;
+            color: #8a5a5a;
+            text-align: center;
+            margin-top: -2px;
+            z-index: 2;
+            position: relative;
+        }
+
+        #screen-hug .hug-message {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 400;
+            font-size: 0.95rem;
+            color: #6f5353;
+            text-align: center;
+            margin-top: 18px;
+            line-height: 1.6;
+            z-index: 2;
+            position: relative;
+            max-width: 300px;
+        }
+
+        #screen-hug .hug-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 18px;
+            width: 100%;
+            max-width: 280px;
+            z-index: 2;
+            position: relative;
+        }
+
+            #screen-hug .hug-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+        .hug-back-btn {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            z-index: 10;
+            background: rgba(255, 248, 240, 0.70);
+            border: none;
+            border-radius: 40px;
+            padding: 8px 16px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #5A4141;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            cursor: pointer;
+            touch-action: manipulation;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 2px 12px rgba(90, 65, 65, 0.06);
+            transition: all 0.2s;
+            min-height: 40px;
+        }
+
+            .hug-back-btn:active {
+                transform: scale(0.94);
+                background: rgba(255, 248, 240, 0.90);
+            }
+
+        /* ── floating hearts ── */
+        .heart-particle {
+            position: fixed;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-select: none;
+            font-size: 1.2rem;
+            opacity: 0;
+            z-index: 1;
+            animation: float-heart-up 5s ease-out forwards;
+        }
+
+        @keyframes float-heart-up {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0.4) rotate(0deg);
+            }
+
+            10% {
+                opacity: 0.9;
+                transform: translateY(-10px) scale(1) rotate(4deg);
+            }
+
+            90% {
+                opacity: 0.7;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-400px) scale(0.6) rotate(20deg);
+            }
+        }
+
+        /* ── game screen ── */
+        #screen-game {
+            background: #FFF8F0;
+            padding: 0;
+            justify-content: flex-start;
+        }
+
+            #screen-game .game-header {
+                width: 100%;
+                padding: 16px 20px 8px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-shrink: 0;
+                z-index: 5;
+                background: transparent;
+            }
+
+                #screen-game .game-header .game-title {
+                    font-family: 'Dancing Script', cursive;
+                    font-weight: 600;
+                    font-size: 1.2rem;
+                    color: #5A4141;
+                }
+
+                #screen-game .game-header .game-score {
+                    font-family: 'Quicksand', sans-serif;
+                    font-weight: 600;
+                    font-size: 1.1rem;
+                    color: #5A4141;
+                    background: rgba(247, 214, 223, 0.40);
+                    padding: 4px 16px;
+                    border-radius: 40px;
+                }
+
+            #screen-game .game-canvas-wrap {
+                flex: 1;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                overflow: hidden;
+            }
+
+            #screen-game canvas {
+                display: block;
+                width: 100%;
+                height: 100%;
+                background: #FFF8F0;
+                touch-action: none;
+                border-radius: 0;
+            }
+
+            #screen-game .game-overlay {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background: rgba(255, 248, 240, 0.75);
+                backdrop-filter: blur(4px);
+                -webkit-backdrop-filter: blur(4px);
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.5s ease;
+                padding: 24px;
+                z-index: 10;
+            }
+
+                #screen-game .game-overlay.active {
+                    opacity: 1;
+                    pointer-events: auto;
+                }
+
+                #screen-game .game-overlay .big-emoji {
+                    font-size: 3.6rem;
+                    margin-bottom: 4px;
+                }
+
+                #screen-game .game-overlay .overlay-title {
+                    font-family: 'Dancing Script', cursive;
+                    font-weight: 700;
+                    font-size: 2rem;
+                    color: #5A4141;
+                    text-align: center;
+                }
+
+                #screen-game .game-overlay .overlay-sub {
+                    font-family: 'Quicksand', sans-serif;
+                    font-weight: 400;
+                    font-size: 1rem;
+                    color: #6f5353;
+                    text-align: center;
+                    margin: 4px 0 12px 0;
+                    line-height: 1.5;
+                }
+
+                #screen-game .game-overlay .btn {
+                    margin-top: 4px;
+                    min-width: 160px;
+                }
+
+        .game-tap-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #a08080;
+            background: rgba(255, 248, 240, 0.80);
+            padding: 6px 18px;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 3;
+            pointer-events: none;
+            animation: tap-hint-breathe 2s ease-in-out infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes tap-hint-breathe {
+            0%, 100% {
+                opacity: 0.6;
+                transform: translateX(-50%) scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1.04);
+            }
+        }
+
+        /* ── quiet screen ── */
+        #screen-quiet {
+            background: #FFF8F0;
+        }
+
+            #screen-quiet .quiet-moon {
+                font-size: 4.4rem;
+                margin-bottom: 8px;
+                animation: quiet-float 4s ease-in-out infinite;
+            }
+
+        @keyframes quiet-float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        #screen-quiet .quiet-title {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            font-size: 2.2rem;
+            color: #5A4141;
+            text-align: center;
+        }
+
+        #screen-quiet .quiet-text {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 400;
+            font-size: 1.0rem;
+            color: #6f5353;
+            text-align: center;
+            line-height: 1.7;
+            max-width: 320px;
+            margin: 6px 0 4px 0;
+        }
+
+            #screen-quiet .quiet-text .highlight {
+                color: #C95C68;
+                font-weight: 600;
+            }
+
+        #screen-quiet .quiet-mwa {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            font-size: 2.8rem;
+            color: #C95C68;
+            text-align: center;
+            margin: 10px 0 6px 0;
+            animation: mwa-pulse 2.2s ease-in-out infinite;
+            letter-spacing: 2px;
+        }
+
+        @keyframes mwa-pulse {
+            0%, 100% {
+                transform: scale(1) rotate(-1deg);
+            }
+
+            50% {
+                transform: scale(1.06) rotate(1deg);
+            }
+        }
+
+        #screen-quiet .quiet-btn-wrap {
+            margin-top: 12px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+            #screen-quiet .quiet-btn-wrap .btn {
+                min-width: 160px;
+            }
+
+        /* ── stars decoration ── */
+        .stars-deco {
+            position: absolute;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-select: none;
+            font-size: 1.2rem;
+            color: #E8D5C4;
+            opacity: 0.4;
+        }
+
+        /* ── scrollable content fix ── */
+        .scrollable {
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            flex: 1;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px 0;
+        }
+
+            .scrollable::-webkit-scrollbar {
+                display: none;
+            }
+
+        /* ── responsive tweaks ── */
+        @media (max-height: 700px) {
+            .illustration {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 8px;
+            }
+
+            #screen-opening .big-hello {
+                font-size: 1.8rem;
+            }
+
+            #screen-opening .sub-text {
+                font-size: 0.92rem;
+            }
+
+            .checklist li {
+                font-size: 0.92rem;
+                padding: 5px 0 5px 28px;
+            }
+
+                .checklist li::before {
+                    font-size: 0.95rem;
+                    top: 5px;
+                }
+
+            #screen-itinerary .itinerary-title {
+                font-size: 1.5rem;
+                margin-bottom: 8px;
+            }
+
+            .options-grid .btn {
+                padding: 12px 16px;
+                min-height: 48px;
+                font-size: 0.95rem;
+            }
+
+            .deal-section {
+                padding: 12px 16px;
+                margin: 10px 0 8px 0;
+            }
+
+                .deal-section .deal-text {
+                    font-size: 0.9rem;
+                }
+
+            #screen-hug .hug-heart {
+                font-size: 4.4rem;
+            }
+
+            #screen-hug .hug-title {
+                font-size: 2rem;
+            }
+
+            #screen-hug .hug-squeeze {
+                font-size: 1.2rem;
+            }
+
+            #screen-quiet .quiet-mwa {
+                font-size: 2.2rem;
+            }
+
+            #screen-quiet .quiet-moon {
+                font-size: 3.4rem;
+            }
+
+            .btn {
+                font-size: 1rem;
+                padding: 12px 24px;
+                min-height: 48px;
+            }
+
+            #screen-opening .btn-wrapper .btn {
+                font-size: 1.05rem;
+                padding: 14px 28px;
+                min-height: 54px;
+            }
+        }
+
+        @media (max-height: 600px) {
+            .illustration {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 4px;
+            }
+
+            #screen-opening .big-hello {
+                font-size: 1.5rem;
+            }
+
+            #screen-opening .sub-text {
+                font-size: 0.82rem;
+                line-height: 1.4;
+            }
+
+            .checklist li {
+                font-size: 0.82rem;
+                padding: 4px 0 4px 24px;
+            }
+
+                .checklist li::before {
+                    font-size: 0.8rem;
+                    top: 4px;
+                }
+
+            #screen-itinerary .itinerary-title {
+                font-size: 1.2rem;
+                margin-bottom: 4px;
+            }
+
+            .options-grid {
+                gap: 8px;
+            }
+
+                .options-grid .btn {
+                    padding: 10px 14px;
+                    min-height: 40px;
+                    font-size: 0.85rem;
+                }
+
+            .deal-section {
+                padding: 8px 14px;
+                margin: 6px 0 4px 0;
+            }
+
+                .deal-section .deal-text {
+                    font-size: 0.8rem;
+                }
+
+            .deal-check .box {
+                width: 22px;
+                height: 22px;
+                font-size: 0.9rem;
+            }
+
+            .deal-check .label {
+                font-size: 0.85rem;
+            }
+
+            #screen-hug .hug-heart {
+                font-size: 3.6rem;
+            }
+
+            #screen-hug .hug-title {
+                font-size: 1.6rem;
+            }
+
+            #screen-hug .hug-squeeze {
+                font-size: 1rem;
+            }
+
+            #screen-hug .hug-message {
+                font-size: 0.8rem;
+                margin-top: 10px;
+            }
+
+            #screen-quiet .quiet-mwa {
+                font-size: 1.8rem;
+            }
+
+            #screen-quiet .quiet-moon {
+                font-size: 2.8rem;
+            }
+
+            #screen-quiet .quiet-text {
+                font-size: 0.85rem;
+            }
+
+            .btn {
+                font-size: 0.85rem;
+                padding: 10px 18px;
+                min-height: 40px;
+            }
+
+            #screen-opening .btn-wrapper .btn {
+                font-size: 0.95rem;
+                padding: 12px 22px;
+                min-height: 46px;
+            }
+
+            .hug-back-btn {
+                font-size: 0.75rem;
+                padding: 6px 12px;
+                min-height: 32px;
+                top: 10px;
+                left: 10px;
+            }
+        }
+
+        /* ── reduced motion ── */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            #screen-opening .btn-wrapper .btn {
+                animation: none;
+            }
+
+            .heart-particle {
+                animation-duration: 3s !important;
+            }
+
+            #screen-hug .hug-heart {
+                animation: none;
+            }
+
+            #screen-quiet .quiet-moon {
+                animation: none;
+            }
+
+            #screen-quiet .quiet-mwa {
+                animation: none;
+            }
+
+            .game-tap-hint {
+                animation: none;
+            }
+        }
+
+        /* ── utilities ── */
+        .mt-4 {
+            margin-top: 4px;
+        }
+
+        .mt-8 {
+            margin-top: 8px;
+        }
+
+        .mt-12 {
+            margin-top: 12px;
+        }
+
+        .mt-16 {
+            margin-top: 16px;
+        }
+
+        .mb-4 {
+            margin-bottom: 4px;
+        }
+
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+
+        .gap-4 {
+            gap: 4px;
+        }
+
+        .gap-8 {
+            gap: 8px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .flex-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .flex-1 {
+            flex: 1;
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        .z-10 {
+            z-index: 10;
+        }
+    </style>
 </head>
 <body>
+
     <div id="app">
+
         <!-- ─── SCREEN 1: OPENING ─── -->
         <div id="screen-opening" class="screen active">
             <div class="screen-content">
@@ -29,9 +1179,11 @@
                         <circle cx="74" cy="42" r="2" fill="#FFF8F0" opacity="0.4" />
                     </svg>
                 </div>
+
                 <div class="big-hello handwritten">
                     omgggggg hiiiiiiii <span class="name">Nehaaaaaaaa</span> ♡
                 </div>
+
                 <div class="sub-text">
                     so ik k next coming 3-4 days will suck.<br />
                     dimag vagera kaam nahi karge and shit<br />
@@ -41,6 +1193,7 @@
                     you dont have to do everything today<br />
                     <span class="highlight">dont let it get to your head : )</span>
                 </div>
+
                 <div class="btn-wrapper">
                     <button class="btn btn-primary" id="btn-open-itinerary">
                         aaj ki checklist →
@@ -52,9 +1205,11 @@
         <!-- ─── SCREEN 2: ITINERARY ─── -->
         <div id="screen-itinerary" class="screen">
             <div class="screen-content scrollable">
+
                 <div class="itinerary-title handwritten">
                     <span class="deco">🎀</span> today's itinerary
                 </div>
+
                 <ul class="checklist">
                     <li>drink lots of water</li>
                     <li>sleep if you can</li>
@@ -62,10 +1217,12 @@
                     <li>don't be hard on yourself</li>
                     <li>you don't have to be productive today</li>
                 </ul>
+
                 <div class="checklist-sub">
                     that's it. that's the itinerary.<br />
                     very difficult. i know.
                 </div>
+
                 <!-- deal section -->
                 <div class="deal-section" id="deal-section">
                     <div class="deal-text">
@@ -76,9 +1233,10 @@
                         <span class="label">deal ♡</span>
                     </div>
                     <div id="deal-done" style="display:none;" class="deal-done">
-                       Acchi bacchi, jao paani peeke aao
+                        good. now go drink some water. 💧
                     </div>
                 </div>
+
                 <!-- options -->
                 <div class="options-grid">
                     <button class="btn" id="btn-hug">
@@ -94,6 +1252,7 @@
                         <span class="label-text">leave me alone for a while</span>
                     </button>
                 </div>
+
                 <div style="height:8px;"></div>
             </div>
         </div>
@@ -104,10 +1263,10 @@
             <div class="hug-container">
                 <div class="hug-heart" id="hug-main-heart">❤️</div>
                 <div class="hug-title handwritten">big virtual hug</div>
-                <div class="hug-squeeze handwritten">squeeze squeeze ♡</div>
+                <div class="hug-squeeze handwritten">♡♡♡♡</div>
                 <div class="hug-message" id="hug-message">
                     okay you can leave the hug now<br />
-                    i'm letting go reluctantly
+                    :)
                 </div>
                 <div class="hug-actions">
                     <button class="btn btn-primary" id="hug-ok-btn">okay okay ♡</button>
@@ -164,8 +1323,575 @@
         <div class="stars-deco" style="bottom:22%;left:4%;font-size:1.2rem;">✦</div>
         <div class="stars-deco" style="top:45%;left:3%;font-size:0.7rem;">♡</div>
         <div class="stars-deco" style="top:55%;right:3%;font-size:0.8rem;">✧</div>
+
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // ──────────────────────────────────────────────
+        // STATE
+        // ──────────────────────────────────────────────
+        const state = {
+            currentScreen: 'opening',
+            dealChecked: false,
+            hugActive: false,
+            hugHeartsInterval: null,
+            gameRunning: false,
+            gameLoopId: null, // store animation frame ID
+        };
+
+        // ──────────────────────────────────────────────
+        // DOM REFS
+        // ──────────────────────────────────────────────
+        const $ = (id) => document.getElementById(id);
+        const screens = {
+            opening: $('screen-opening'),
+            itinerary: $('screen-itinerary'),
+            hug: $('screen-hug'),
+            game: $('screen-game'),
+            quiet: $('screen-quiet'),
+        };
+
+        const btnOpenItinerary = $('btn-open-itinerary');
+        const btnHug = $('btn-hug');
+        const btnGame = $('btn-game');
+        const btnQuiet = $('btn-quiet');
+        const hugBackBtn = $('hug-back-btn');
+        const hugOkBtn = $('hug-ok-btn');
+        const hugMainHeart = $('hug-main-heart');
+        const hugMessage = $('hug-message');
+        const hugHeartsContainer = $('hug-hearts-container');
+        const dealCheck = $('deal-check');
+        const dealBox = $('deal-box');
+        const dealDone = $('deal-done');
+        const gameCanvas = $('game-canvas');
+        const gameScoreDisplay = $('game-score-display');
+        const gameOverlay = $('game-overlay');
+        const gameOverlayEmoji = $('game-overlay-emoji');
+        const gameOverlayTitle = $('game-overlay-title');
+        const gameOverlaySub = $('game-overlay-sub');
+        const gameRetryBtn = $('game-retry-btn');
+        const quietOkBtn = $('quiet-ok-btn');
+        const app = $('app');
+
+        // ──────────────────────────────────────────────
+        // SCREEN NAVIGATION — FIXED: stops game on leave
+        // ──────────────────────────────────────────────
+        function showScreen(id) {
+            // If leaving the game screen, stop the game loop
+            if (state.currentScreen === 'game' && id !== 'game') {
+                stopGame();
+            }
+
+            Object.keys(screens).forEach(key => {
+                const el = screens[key];
+                if (key === id) {
+                    el.classList.add('active');
+                    el.classList.remove('exit');
+                } else {
+                    el.classList.remove('active');
+                    el.classList.add('exit');
+                }
+            });
+            state.currentScreen = id;
+            const bgMap = {
+                opening: '#FFF8F0',
+                itinerary: '#FFF8F0',
+                hug: '#F7D6DF',
+                game: '#FFF8F0',
+                quiet: '#FFF8F0',
+            };
+            app.style.background = bgMap[id] || '#FFF8F0';
+        }
+
+        // ──────────────────────────────────────────────
+        // DEAL
+        // ──────────────────────────────────────────────
+        dealCheck.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (state.dealChecked) return;
+            state.dealChecked = true;
+            dealBox.textContent = '☑';
+            dealBox.classList.add('checked');
+            dealDone.style.display = 'block';
+            if (navigator.vibrate) navigator.vibrate(10);
+        });
+
+        // ──────────────────────────────────────────────
+        // OPENING → ITINERARY
+        // ──────────────────────────────────────────────
+        btnOpenItinerary.addEventListener('click', function () {
+            showScreen('itinerary');
+            if (navigator.vibrate) navigator.vibrate(8);
+        });
+
+        // ──────────────────────────────────────────────
+        // VIRTUAL HUG
+        // ──────────────────────────────────────────────
+        let hugHeartInterval = null;
+
+        function spawnHearts(count = 40) {
+            const container = hugHeartsContainer;
+            const colors = ['#FFF8F0', '#F7D6DF', '#E9A9B8', '#C95C68', '#E8D5C4'];
+            const symbols = ['♥', '♡', '❤', '♥', '♡'];
+            for (let i = 0; i < count; i++) {
+                const el = document.createElement('div');
+                el.className = 'heart-particle';
+                el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                el.style.color = colors[Math.floor(Math.random() * colors.length)];
+                const size = 0.8 + Math.random() * 1.8;
+                el.style.fontSize = size + 'rem';
+                el.style.left = (Math.random() * 100) + '%';
+                el.style.bottom = '-10%';
+                el.style.transform = 'rotate(' + (Math.random() * 60 - 30) + 'deg)';
+                const duration = 4 + Math.random() * 3;
+                el.style.animationDuration = duration + 's';
+                el.style.animationDelay = (Math.random() * 2) + 's';
+                container.appendChild(el);
+                setTimeout(() => {
+                    if (el.parentNode) el.parentNode.removeChild(el);
+                }, (duration + 2) * 1000);
+            }
+        }
+
+        function startHugHearts() {
+            if (hugHeartInterval) clearInterval(hugHeartInterval);
+            spawnHearts(30);
+            hugHeartInterval = setInterval(() => {
+                if (state.currentScreen === 'hug') {
+                    spawnHearts(12);
+                } else {
+                    clearInterval(hugHeartInterval);
+                    hugHeartInterval = null;
+                }
+            }, 1200);
+        }
+
+        function stopHugHearts() {
+            if (hugHeartInterval) {
+                clearInterval(hugHeartInterval);
+                hugHeartInterval = null;
+            }
+            hugHeartsContainer.innerHTML = '';
+        }
+
+        btnHug.addEventListener('click', function () {
+            showScreen('hug');
+            hugMessage.innerHTML = 'okay you can leave the hug now<br />: )';
+            hugOkBtn.textContent = 'okay okay ♡';
+            startHugHearts();
+            if (navigator.vibrate) navigator.vibrate(12);
+        });
+
+        hugBackBtn.addEventListener('click', function () {
+            stopHugHearts();
+            showScreen('itinerary');
+            if (navigator.vibrate) navigator.vibrate(6);
+        });
+
+        hugOkBtn.addEventListener('click', function () {
+            stopHugHearts();
+            showScreen('itinerary');
+            if (navigator.vibrate) navigator.vibrate(6);
+        });
+
+        // ──────────────────────────────────────────────
+        // QUIET / LEAVE ME ALONE
+        // ──────────────────────────────────────────────
+        btnQuiet.addEventListener('click', function () {
+            showScreen('quiet');
+            if (navigator.vibrate) navigator.vibrate(8);
+        });
+
+        quietOkBtn.addEventListener('click', function () {
+            showScreen('itinerary');
+            if (navigator.vibrate) navigator.vibrate(6);
+        });
+
+        // ──────────────────────────────────────────────
+        // MINI-GAME — Flappy Heart (SUPER EASY)
+        // ──────────────────────────────────────────────
+        const ctx = gameCanvas.getContext('2d');
+        let game = {
+            running: false,
+            score: 0,
+            best: 0,
+            player: { x: 60, y: 0, vy: 0, radius: 16 },
+            gravity: 0.15,
+            lift: -5.0,
+            pipes: [],
+            pipeWidth: 50,
+            pipeGap: 260,
+            pipeSpeed: 1.4,
+            frame: 0,
+            spawnInterval: 260,
+            gameOver: false,
+            started: false,
+            width: 0,
+            height: 0,
+            dpr: 1,
+        };
+
+        // ── stop game helper ──
+        function stopGame() {
+            game.running = false;
+            if (state.gameLoopId) {
+                cancelAnimationFrame(state.gameLoopId);
+                state.gameLoopId = null;
+            }
+            // Remove overlay if active
+            gameOverlay.classList.remove('active');
+        }
+
+        function resizeGame() {
+            const wrap = gameCanvas.parentElement;
+            const rect = wrap.getBoundingClientRect();
+            const dpr = window.devicePixelRatio || 1;
+            const w = rect.width;
+            const h = rect.height;
+            gameCanvas.width = w * dpr;
+            gameCanvas.height = h * dpr;
+            gameCanvas.style.width = w + 'px';
+            gameCanvas.style.height = h + 'px';
+            game.width = w;
+            game.height = h;
+            game.dpr = dpr;
+            ctx.scale(dpr, dpr);
+            if (!game.running && !game.gameOver) {
+                game.player.y = h / 2;
+                game.player.vy = 0;
+            }
+        }
+
+        function resetGame() {
+            game.score = 0;
+            game.pipes = [];
+            game.frame = 0;
+            game.gameOver = false;
+            game.running = true;
+            game.started = false;
+            game.player.y = game.height / 2;
+            game.player.vy = 0;
+            gameOverlay.classList.remove('active');
+            gameScoreDisplay.textContent = 'score: 0';
+            const hint = document.querySelector('.game-tap-hint');
+            if (hint) hint.style.opacity = '1';
+        }
+
+        function spawnPipe() {
+            const minY = 60;
+            const maxY = game.height - game.pipeGap - 60;
+            const y = Math.min(maxY, Math.max(minY, Math.random() * (maxY - minY) + minY));
+            game.pipes.push({
+                x: game.width,
+                topY: y,
+                scored: false,
+            });
+        }
+
+        // ── game loop with proper frame ID storage ──
+        function gameLoop() {
+            if (!game.running || game.gameOver) {
+                // If game stopped but loop is still running, cancel it
+                if (!game.running && state.gameLoopId) {
+                    cancelAnimationFrame(state.gameLoopId);
+                    state.gameLoopId = null;
+                }
+                return;
+            }
+
+            game.frame++;
+
+            if (game.frame % game.spawnInterval === 0) {
+                spawnPipe();
+            }
+
+            if (game.started) {
+                game.player.vy += game.gravity;
+                game.player.y += game.player.vy;
+            }
+
+            if (game.player.y - game.player.radius < 0) {
+                game.player.y = game.player.radius;
+                game.player.vy = 0;
+            }
+            if (game.player.y + game.player.radius > game.height) {
+                gameOver();
+                return;
+            }
+
+            for (let i = game.pipes.length - 1; i >= 0; i--) {
+                const p = game.pipes[i];
+                p.x -= game.pipeSpeed;
+
+                const px = game.player.x;
+                const py = game.player.y;
+                const r = game.player.radius;
+                const pw = game.pipeWidth;
+                const gap = game.pipeGap;
+
+                if (px + r - 4 > p.x && px - r + 4 < p.x + pw) {
+                    if (py - r + 4 < p.topY || py + r - 4 > p.topY + gap) {
+                        gameOver();
+                        return;
+                    }
+                }
+
+                if (!p.scored && p.x + game.pipeWidth < game.player.x) {
+                    p.scored = true;
+                    game.score++;
+                    gameScoreDisplay.textContent = 'score: ' + game.score;
+                    if (navigator.vibrate) navigator.vibrate(5);
+                }
+
+                if (p.x + game.pipeWidth < -20) {
+                    game.pipes.splice(i, 1);
+                }
+            }
+
+            drawGame();
+
+            // Store the frame ID for proper cancellation
+            state.gameLoopId = requestAnimationFrame(gameLoop);
+        }
+
+        function drawGame() {
+            const w = game.width;
+            const h = game.height;
+            ctx.clearRect(0, 0, w, h);
+
+            const grad = ctx.createLinearGradient(0, 0, 0, h);
+            grad.addColorStop(0, '#FFF8F0');
+            grad.addColorStop(1, '#F7D6DF');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, w, h);
+
+            ctx.strokeStyle = '#E8D5C4';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([6, 8]);
+            ctx.beginPath();
+            ctx.moveTo(0, h - 8);
+            ctx.lineTo(w, h - 8);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            for (const p of game.pipes) {
+                const x = p.x;
+                const topY = p.topY;
+                const gap = game.pipeGap;
+                const pw = game.pipeWidth;
+
+                ctx.shadowColor = 'rgba(201,92,104,0.06)';
+                ctx.shadowBlur = 12;
+
+                const topH = topY;
+                ctx.fillStyle = '#E8D5C4';
+                ctx.beginPath();
+                ctx.roundRect(x, 0, pw, topH, 16);
+                ctx.fill();
+                ctx.fillStyle = '#F7D6DF';
+                ctx.beginPath();
+                ctx.roundRect(x + 4, 4, pw - 8, Math.max(topH - 8, 4), 12);
+                ctx.fill();
+
+                const bottomY = topY + gap;
+                const bottomH = h - bottomY;
+                ctx.fillStyle = '#E8D5C4';
+                ctx.beginPath();
+                ctx.roundRect(x, bottomY, pw, bottomH, 16);
+                ctx.fill();
+                ctx.fillStyle = '#F7D6DF';
+                ctx.beginPath();
+                ctx.roundRect(x + 4, bottomY + 4, pw - 8, Math.max(bottomH - 8, 4), 12);
+                ctx.fill();
+
+                ctx.shadowBlur = 0;
+                ctx.fillStyle = 'rgba(255,248,240,0.5)';
+                for (let d = 0; d < 3; d++) {
+                    const dx = x + 6 + d * 12;
+                    const dy = (d % 2 === 0) ? 8 + d * 6 : topY - 8 - d * 4;
+                    if (dy > 4 && dy < topH - 4) {
+                        ctx.beginPath();
+                        ctx.arc(dx, dy, 4, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                    const dy2 = bottomY + 8 + d * 6;
+                    if (dy2 < h - 8) {
+                        ctx.beginPath();
+                        ctx.arc(dx, dy2, 4, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+                ctx.shadowBlur = 0;
+            }
+
+            const px = game.player.x;
+            const py = game.player.y;
+            const r = game.player.radius;
+            const size = r * 1.6;
+
+            ctx.shadowColor = 'rgba(201,92,104,0.15)';
+            ctx.shadowBlur = 20;
+            ctx.fillStyle = '#C95C68';
+            ctx.beginPath();
+            ctx.moveTo(px, py + size * 0.3);
+            ctx.bezierCurveTo(px - size * 0.6, py - size * 0.3, px - size * 0.8, py + size * 0.2, px, py + size * 0.5);
+            ctx.bezierCurveTo(px + size * 0.8, py + size * 0.2, px + size * 0.6, py - size * 0.3, px, py + size * 0.3);
+            ctx.fill();
+
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = 'rgba(255,248,240,0.3)';
+            ctx.beginPath();
+            ctx.arc(px - size * 0.2, py - size * 0.15, size * 0.15, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = 'rgba(255,248,240,0.15)';
+            ctx.beginPath();
+            ctx.arc(px + size * 0.1, py - size * 0.05, size * 0.08, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            if (!game.started && !game.gameOver) {
+                ctx.fillStyle = '#a08080';
+                ctx.font = '18px Quicksand, sans-serif';
+                ctx.fontWeight = '500';
+                ctx.textAlign = 'center';
+                ctx.fillText('tap to start ♡', w / 2, h / 2 + 60);
+                ctx.textAlign = 'left';
+            }
+        }
+
+        if (!CanvasRenderingContext2D.prototype.roundRect) {
+            CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, radii) {
+                const r = typeof radii === 'number' ? radii : (radii || 0);
+                this.moveTo(x + r, y);
+                this.arcTo(x + w, y, x + w, y + h, r);
+                this.arcTo(x + w, y + h, x, y + h, r);
+                this.arcTo(x, y + h, x, y, r);
+                this.arcTo(x, y, x + w, y, r);
+                return this;
+            };
+        }
+
+        function gameOver() {
+            if (game.gameOver) return;
+            game.gameOver = true;
+            game.running = false;
+            // Cancel the loop
+            if (state.gameLoopId) {
+                cancelAnimationFrame(state.gameLoopId);
+                state.gameLoopId = null;
+            }
+            if (game.score > game.best) game.best = game.score;
+
+            if (game.score >= 3) {
+                gameOverlayEmoji.textContent = 'OMGGGG ♡';
+                gameOverlayTitle.textContent = 'see?';
+                gameOverlaySub.textContent = 'itna sahi toh chal rha hai dimag \ we need to stop doubting ourselves';
+                gameRetryBtn.textContent = 'back to itinerary →';
+                gameRetryBtn.dataset.action = 'back';
+            } else {
+                gameOverlayEmoji.textContent = 'NOOO 😭';
+                gameOverlayTitle.textContent = 'one more try.';
+                gameOverlaySub.textContent = 'okay okay...';
+                gameRetryBtn.textContent = 'try again ♡';
+                gameRetryBtn.dataset.action = 'retry';
+            }
+            gameOverlay.classList.add('active');
+            if (navigator.vibrate) navigator.vibrate(20);
+        }
+
+        function startGame() {
+            // Stop any existing game first
+            stopGame();
+            resizeGame();
+            resetGame();
+            game.started = false;
+            game.running = true;
+            game.gameOver = false;
+            gameOverlay.classList.remove('active');
+            gameScoreDisplay.textContent = 'score: 0';
+            const hint = document.querySelector('.game-tap-hint');
+            if (hint) hint.style.opacity = '1';
+            drawGame();
+            // Start the loop with proper frame ID
+            state.gameLoopId = requestAnimationFrame(gameLoop);
+        }
+
+        function handleGameTap(e) {
+            e.preventDefault();
+            if (state.currentScreen !== 'game') return;
+            if (game.gameOver) return;
+
+            if (!game.started) {
+                game.started = true;
+                game.player.vy = game.lift;
+                const hint = document.querySelector('.game-tap-hint');
+                if (hint) hint.style.opacity = '0';
+                if (navigator.vibrate) navigator.vibrate(6);
+                return;
+            }
+
+            game.player.vy = game.lift;
+            if (navigator.vibrate) navigator.vibrate(4);
+        }
+
+        gameCanvas.addEventListener('touchstart', handleGameTap, { passive: false });
+        gameCanvas.addEventListener('mousedown', handleGameTap);
+
+        // ── retry / back button ──
+        gameRetryBtn.addEventListener('click', function () {
+            if (this.dataset.action === 'back') {
+                showScreen('itinerary');
+                return;
+            }
+            // Retry
+            resetGame();
+            game.started = false;
+            gameOverlay.classList.remove('active');
+            gameScoreDisplay.textContent = 'score: 0';
+            const hint = document.querySelector('.game-tap-hint');
+            if (hint) hint.style.opacity = '1';
+            drawGame();
+            // Restart the loop
+            if (state.gameLoopId) {
+                cancelAnimationFrame(state.gameLoopId);
+                state.gameLoopId = null;
+            }
+            game.running = true;
+            state.gameLoopId = requestAnimationFrame(gameLoop);
+        });
+
+        btnGame.addEventListener('click', function () {
+            showScreen('game');
+            setTimeout(() => {
+                startGame();
+            }, 100);
+            if (navigator.vibrate) navigator.vibrate(8);
+        });
+
+        // ── resize ──
+        let resizeTimeout;
+        window.addEventListener('resize', function () {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                if (state.currentScreen === 'game') {
+                    resizeGame();
+                    if (!game.gameOver) drawGame();
+                }
+            }, 200);
+        });
+
+        // ──────────────────────────────────────────────
+        // INIT
+        // ──────────────────────────────────────────────
+        showScreen('opening');
+
+        document.addEventListener('touchmove', function (e) {
+            if (e.target.closest('.scrollable')) return;
+            e.preventDefault();
+        }, { passive: false });
+
+        console.log('♡ for neha — made with love');
+    </script>
+
 </body>
 </html>
