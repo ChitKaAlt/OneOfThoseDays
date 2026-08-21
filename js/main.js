@@ -1,8 +1,8 @@
 import { $, initPolyfills } from './utils.js';
 import { state } from './state.js';
 import { showScreen } from './navigation.js';
-import { setupItinerary } from './Features/itinerary.js';
-import { startHugHearts, stopHugHearts } from './Features/hug.js';
+import { setupItinerary } from './features/itinerary.js';
+import { startHugHearts, stopHugHearts } from './features/hug.js';
 import { setupFlappy, startFlappy, resizeFlappy } from './games/flappy.js';
 import { setupSnake, startSnake, resizeSnake } from './games/snake.js';
 
