@@ -1,66 +1,64 @@
-﻿/* style.css */
-/* ── reset ── */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+﻿        /* ── reset ── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            font-size: 16px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: #FFF8F0;
+            color: #5A4141;
+            min-height: 100dvh;
+            min-height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+            touch-action: manipulation;
+        }
 
-html {
-    font-size: 16px;
-    -webkit-tap-highlight-color: transparent;
-}
+        /* ── app wrapper ── */
+        #app {
+            width: 100%;
+            max-width: 480px;
+            height: 100dvh;
+            height: 100vh;
+            max-height: 900px;
+            position: relative;
+            overflow: hidden;
+            background: #FFF8F0;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.6s ease;
+            border-radius: 0;
+            box-shadow: 0 0 40px rgba(90, 65, 65, 0.06);
+        }
+        @media (min-width: 500px) {
+            #app {
+                border-radius: 32px;
+                height: 90dvh;
+                max-height: 800px;
+                box-shadow: 0 20px 60px rgba(90, 65, 65, 0.10);
+            }
+        }
 
-body {
-    font-family: 'Quicksand', sans-serif;
-    background: #FFF8F0;
-    color: #5A4141;
-    min-height: 100dvh;
-    min-height: 100vh;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-    touch-action: manipulation;
-}
-
-/* ── app wrapper ── */
-#app {
-    width: 100%;
-    max-width: 480px;
-    height: 100dvh;
-    height: 100vh;
-    max-height: 900px;
-    position: relative;
-    overflow: hidden;
-    background: #FFF8F0;
-    display: flex;
-    flex-direction: column;
-    transition: background 0.6s ease;
-    border-radius: 0;
-    box-shadow: 0 0 40px rgba(90, 65, 65, 0.06);
-}
-
-@media (min-width: 500px) {
-    #app {
-        border-radius: 32px;
-        height: 90dvh;
-        max-height: 800px;
-        box-shadow: 0 20px 60px rgba(90, 65, 65, 0.10);
-    }
-}
-
-/* ── screens ── */
+        /* ── screens ── */
+  /* ── screens ── */
 .screen {
     position: absolute;
     inset: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* FIX: Changed from center to flex-start to prevent top-clipping on mobile */
+    justify-content: flex-start; 
     padding: 24px 28px;
     opacity: 0;
     pointer-events: none;
@@ -70,266 +68,230 @@ body {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
 }
+.screen::-webkit-scrollbar {
+    display: none;
+}
+.screen.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+.screen.exit {
+    opacity: 0;
+    transform: scale(0.94);
+    pointer-events: none;
+}
 
-    .screen::-webkit-scrollbar {
-        display: none;
-    }
-
-    .screen.active {
-        opacity: 1;
-        pointer-events: auto;
-        transform: scale(1);
-    }
-
-    .screen.exit {
-        opacity: 0;
-        transform: scale(0.94);
-        pointer-events: none;
-    }
-
-/* ── scrollable content ── */
 .screen-content {
     width: 100%;
     max-width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    margin: auto 0; 
     padding: 8px 0;
     flex: 1;
 }
 
-/* ── typography ── */
-.handwritten {
-    font-family: 'Dancing Script', cursive;
-    font-weight: 600;
-}
+        /* ── typography ── */
+        .handwritten {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 600;
+        }
+        .handwritten-bold {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+        }
+        .body-text {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 400;
+        }
+        .body-medium {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 500;
+        }
+        .body-semibold {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+        }
 
-.handwritten-bold {
-    font-family: 'Dancing Script', cursive;
-    font-weight: 700;
-}
+        .bg-cream {
+            background: #FFF8F0;
+        }
+        .bg-beige {
+            background: #E8D5C4;
+        }
+        .bg-pink {
+            background: #F7D6DF;
+        }
+        .bg-softpink {
+            background: #E9A9B8;
+        }
+        .bg-softred {
+            background: #C95C68;
+        }
+        .text-brown {
+            color: #5A4141;
+        }
+        .text-softred {
+            color: #C95C68;
+        }
+        .text-pink {
+            color: #E9A9B8;
+        }
 
-.body-text {
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 400;
-}
+        /* ── buttons ── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 60px;
+            background: #E9A9B8;
+            color: #FFF8F0;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 16px rgba(201, 92, 104, 0.20);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-touch-callout: none;
+            min-height: 56px;
+            letter-spacing: 0.02em;
+            position: relative;
+        }
+        .btn:active {
+            transform: scale(0.94);
+            box-shadow: 0 2px 8px rgba(201, 92, 104, 0.15);
+        }
+        .btn-primary {
+            background: #C95C68;
+            color: #FFF8F0;
+            box-shadow: 0 4px 20px rgba(201, 92, 104, 0.30);
+        }
+        .btn-primary:active {
+            background: #b84e5a;
+        }
+        .btn-soft {
+            background: #F7D6DF;
+            color: #5A4141;
+            box-shadow: 0 2px 12px rgba(201, 92, 104, 0.10);
+        }
+        .btn-soft:active {
+            background: #edc8d3;
+        }
+        .btn-outline {
+            background: transparent;
+            color: #5A4141;
+            box-shadow: inset 0 0 0 2px #E8D5C4;
+        }
+        .btn-outline:active {
+            background: #F7D6DF;
+        }
+        .btn-small {
+            font-size: 0.9rem;
+            padding: 10px 22px;
+            min-height: 44px;
+        }
+        .btn-tiny {
+            font-size: 0.8rem;
+            padding: 8px 16px;
+            min-height: 36px;
+            border-radius: 40px;
+        }
 
-.body-medium {
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 500;
-}
+        /* ── opening screen ── */
+        #screen-opening .big-hello {
+            font-size: 2.4rem;
+            line-height: 1.2;
+            text-align: center;
+            margin-bottom: 6px;
+            color: #5A4141;
+        }
+        #screen-opening .big-hello .name {
+            color: #C95C68;
+        }
+        #screen-opening .sub-text {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            text-align: center;
+            color: #6f5353;
+            margin-top: 4px;
+        }
+        #screen-opening .sub-text .highlight {
+            color: #C95C68;
+            font-weight: 600;
+        }
+        #screen-opening .btn-wrapper {
+            margin-top: 24px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        #screen-opening .btn-wrapper .btn {
+            font-size: 1.2rem;
+            padding: 16px 36px;
+            min-height: 64px;
+            width: 100%;
+            max-width: 300px;
+            animation: gentle-pulse 2.4s ease-in-out infinite;
+        }
+        @keyframes gentle-pulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.03);
+            }
+        }
 
-.body-semibold {
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 600;
-}
+        .illustration {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .illustration svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 4px 12px rgba(201, 92, 104, 0.12));
+        }
 
-/* ── colors ── */
-.bg-cream {
-    background: #FFF8F0;
-}
-
-.bg-beige {
-    background: #E8D5C4;
-}
-
-.bg-pink {
-    background: #F7D6DF;
-}
-
-.bg-softpink {
-    background: #E9A9B8;
-}
-
-.bg-softred {
-    background: #C95C68;
-}
-
-.text-brown {
-    color: #5A4141;
-}
-
-.text-softred {
-    color: #C95C68;
-}
-
-.text-pink {
-    color: #E9A9B8;
-}
-
-/* ── buttons ── */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 600;
-    font-size: 1.1rem;
-    padding: 14px 32px;
-    border: none;
-    border-radius: 60px;
-    background: #E9A9B8;
-    color: #FFF8F0;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    box-shadow: 0 4px 16px rgba(201, 92, 104, 0.20);
-    touch-action: manipulation;
-    user-select: none;
-    -webkit-touch-callout: none;
-    min-height: 56px;
-    letter-spacing: 0.02em;
-    position: relative;
-}
-
-    .btn:active {
-        transform: scale(0.94);
-        box-shadow: 0 2px 8px rgba(201, 92, 104, 0.15);
-    }
-
-.btn-primary {
-    background: #C95C68;
-    color: #FFF8F0;
-    box-shadow: 0 4px 20px rgba(201, 92, 104, 0.30);
-}
-
-    .btn-primary:active {
-        background: #b84e5a;
-    }
-
-.btn-soft {
-    background: #F7D6DF;
-    color: #5A4141;
-    box-shadow: 0 2px 12px rgba(201, 92, 104, 0.10);
-}
-
-    .btn-soft:active {
-        background: #edc8d3;
-    }
-
-.btn-outline {
-    background: transparent;
-    color: #5A4141;
-    box-shadow: inset 0 0 0 2px #E8D5C4;
-}
-
-    .btn-outline:active {
-        background: #F7D6DF;
-    }
-
-.btn-small {
-    font-size: 0.9rem;
-    padding: 10px 22px;
-    min-height: 44px;
-}
-
-.btn-tiny {
-    font-size: 0.8rem;
-    padding: 8px 16px;
-    min-height: 36px;
-    border-radius: 40px;
-}
-
-/* ── opening screen ── */
-#screen-opening .big-hello {
-    font-size: 2.4rem;
-    line-height: 1.2;
-    text-align: center;
-    margin-bottom: 6px;
-    color: #5A4141;
-}
-
-    #screen-opening .big-hello .name {
-        color: #C95C68;
-    }
-
-#screen-opening .sub-text {
-    font-size: 1.05rem;
-    line-height: 1.6;
-    text-align: center;
-    color: #6f5353;
-    margin-top: 4px;
-}
-
-    #screen-opening .sub-text .highlight {
-        color: #C95C68;
-        font-weight: 600;
-    }
-
-#screen-opening .btn-wrapper {
-    margin-top: 24px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-    #screen-opening .btn-wrapper .btn {
-        font-size: 1.2rem;
-        padding: 16px 36px;
-        min-height: 64px;
-        width: 100%;
-        max-width: 300px;
-        animation: gentle-pulse 2.4s ease-in-out infinite;
-    }
-
-@keyframes gentle-pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.03);
-    }
-}
-
-/* ── illustration ── */
-.illustration {
-    width: 120px;
-    height: 120px;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-    .illustration svg {
-        width: 100%;
-        height: 100%;
-        filter: drop-shadow(0 4px 12px rgba(201, 92, 104, 0.12));
-    }
-
-/* ── itinerary ── */
-#screen-itinerary .itinerary-title {
-    font-size: 1.8rem;
-    text-align: center;
-    margin-bottom: 16px;
-    color: #5A4141;
-}
-
-    #screen-itinerary .itinerary-title .deco {
-        font-size: 1.6rem;
-    }
-
-.checklist {
-    width: 100%;
-    list-style: none;
-    padding: 0;
-    margin: 4px 0 12px 0;
-}
-
-    .checklist li {
-        font-family: 'Quicksand', sans-serif;
-        font-weight: 500;
-        font-size: 1.05rem;
-        padding: 8px 0 8px 32px;
-        position: relative;
-        color: #5A4141;
-        line-height: 1.4;
-        border-bottom: 1px solid rgba(232, 213, 196, 0.35);
-    }
-
+        /* ── itinerary ── */
+        #screen-itinerary .itinerary-title {
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 16px;
+            color: #5A4141;
+        }
+        #screen-itinerary .itinerary-title .deco {
+            font-size: 1.6rem;
+        }
+        .checklist {
+            width: 100%;
+            list-style: none;
+            padding: 0;
+            margin: 4px 0 12px 0;
+        }
+        .checklist li {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 500;
+            font-size: 1.05rem;
+            padding: 8px 0 8px 32px;
+            position: relative;
+            color: #5A4141;
+            line-height: 1.4;
+            border-bottom: 1px solid rgba(232, 213, 196, 0.35);
+        }
         .checklist li::before {
             content: '♡';
             position: absolute;
@@ -338,384 +300,358 @@ body {
             color: #E9A9B8;
             font-size: 1.1rem;
         }
-
         .checklist li:last-child {
             border-bottom: none;
         }
+        .checklist-sub {
+            font-size: 0.95rem;
+            color: #8a6e6e;
+            text-align: center;
+            margin-top: 4px;
+            font-weight: 400;
+        }
 
-.checklist-sub {
-    font-size: 0.95rem;
-    color: #8a6e6e;
-    text-align: center;
-    margin-top: 4px;
-    font-weight: 400;
-}
-
-/* ── deal section ── */
-.deal-section {
-    width: 100%;
-    margin: 18px 0 14px 0;
-    padding: 16px 20px;
-    background: rgba(247, 214, 223, 0.30);
-    border-radius: 20px;
-    border: 1.5px dashed #E9A9B8;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-    .deal-section .deal-text {
-        font-family: 'Quicksand', sans-serif;
-        font-weight: 500;
-        font-size: 1.0rem;
-        color: #5A4141;
-        text-align: center;
-        line-height: 1.5;
-    }
-
-.deal-check {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    touch-action: manipulation;
-    user-select: none;
-    -webkit-touch-callout: none;
-    padding: 4px 12px 4px 4px;
-    border-radius: 40px;
-    transition: background 0.2s;
-}
-
-    .deal-check:active {
-        background: rgba(233, 169, 184, 0.15);
-    }
-
-    .deal-check .box {
-        width: 28px;
-        height: 28px;
-        border-radius: 8px;
-        border: 2.5px solid #C95C68;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: #C95C68;
-        transition: all 0.25s ease;
-        flex-shrink: 0;
-        background: #FFF8F0;
-    }
-
+        .deal-section {
+            width: 100%;
+            margin: 18px 0 14px 0;
+            padding: 16px 20px;
+            background: rgba(247, 214, 223, 0.30);
+            border-radius: 20px;
+            border: 1.5px dashed #E9A9B8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .deal-section .deal-text {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 500;
+            font-size: 1.0rem;
+            color: #5A4141;
+            text-align: center;
+            line-height: 1.5;
+        }
+        .deal-check {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-touch-callout: none;
+            padding: 4px 12px 4px 4px;
+            border-radius: 40px;
+            transition: background 0.2s;
+        }
+        .deal-check:active {
+            background: rgba(233, 169, 184, 0.15);
+        }
+        .deal-check .box {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            border: 2.5px solid #C95C68;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #C95C68;
+            transition: all 0.25s ease;
+            flex-shrink: 0;
+            background: #FFF8F0;
+        }
         .deal-check .box.checked {
             background: #C95C68;
             color: #FFF8F0;
             border-color: #C95C68;
         }
+        .deal-check .label {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: #5A4141;
+        }
+        .deal-done {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: #C95C68;
+            text-align: center;
+            animation: gentle-fade 0.5s ease;
+        }
+        @keyframes gentle-fade {
+            0% {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    .deal-check .label {
-        font-family: 'Quicksand', sans-serif;
-        font-weight: 600;
-        font-size: 1.05rem;
-        color: #5A4141;
-    }
-
-.deal-done {
-    font-family: 'Dancing Script', cursive;
-    font-weight: 600;
-    font-size: 1.15rem;
-    color: #C95C68;
-    text-align: center;
-    animation: gentle-fade 0.5s ease;
-}
-
-@keyframes gentle-fade {
-    0% {
-        opacity: 0;
-        transform: translateY(6px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ── options grid ── */
-.options-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
-    margin: 8px 0 4px 0;
-}
-
-    .options-grid .btn {
-        width: 100%;
-        justify-content: center;
-        font-size: 1.05rem;
-        padding: 16px 20px;
-        min-height: 58px;
-        background: #FFF8F0;
-        color: #5A4141;
-        box-shadow: 0 2px 12px rgba(90, 65, 65, 0.06);
-        border: 1.5px solid #E8D5C4;
-        border-radius: 20px;
-    }
-
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            margin: 8px 0 4px 0;
+        }
+        .options-grid .btn {
+            width: 100%;
+            justify-content: center;
+            font-size: 1.05rem;
+            padding: 16px 20px;
+            min-height: 58px;
+            background: #FFF8F0;
+            color: #5A4141;
+            box-shadow: 0 2px 12px rgba(90, 65, 65, 0.06);
+            border: 1.5px solid #E8D5C4;
+            border-radius: 20px;
+        }
         .options-grid .btn:active {
             transform: scale(0.97);
             background: #F7D6DF;
         }
-
         .options-grid .btn .emoji-big {
             font-size: 1.4rem;
         }
-
         .options-grid .btn .label-text {
             font-weight: 600;
         }
 
-/* ── hug screen ── */
-#screen-hug {
-    background: #F7D6DF;
-    justify-content: center;
-}
-
-    #screen-hug .hug-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        flex: 1;
-        position: relative;
-        padding: 20px 0;
-    }
-
-    #screen-hug .hug-heart {
-        font-size: 6rem;
-        animation: hug-heart-pulse 1.6s ease-in-out infinite;
-        filter: drop-shadow(0 8px 32px rgba(201, 92, 104, 0.20));
-        line-height: 1;
-        margin-bottom: 12px;
-        position: relative;
-        z-index: 2;
-    }
-
-@keyframes hug-heart-pulse {
-    0%, 100% {
-        transform: scale(1) rotate(-2deg);
-    }
-
-    50% {
-        transform: scale(1.08) rotate(2deg);
-    }
-}
-
-#screen-hug .hug-title {
-    font-family: 'Dancing Script', cursive;
-    font-weight: 700;
-    font-size: 2.4rem;
-    color: #C95C68;
-    text-align: center;
-    z-index: 2;
-    position: relative;
-}
-
-#screen-hug .hug-squeeze {
-    font-family: 'Dancing Script', cursive;
-    font-weight: 400;
-    font-size: 1.5rem;
-    color: #8a5a5a;
-    text-align: center;
-    margin-top: -2px;
-    z-index: 2;
-    position: relative;
-}
-
-#screen-hug .hug-message {
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 400;
-    font-size: 0.95rem;
-    color: #6f5353;
-    text-align: center;
-    margin-top: 18px;
-    line-height: 1.6;
-    z-index: 2;
-    position: relative;
-    max-width: 300px;
-}
-
-#screen-hug .hug-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 18px;
-    width: 100%;
-    max-width: 280px;
-    z-index: 2;
-    position: relative;
-}
-
-    #screen-hug .hug-actions .btn {
-        width: 100%;
-        justify-content: center;
-    }
-
-.hug-back-btn {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    z-index: 10;
-    background: rgba(255, 248, 240, 0.70);
-    border: none;
-    border-radius: 40px;
-    padding: 8px 16px;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 600;
-    font-size: 0.85rem;
-    color: #5A4141;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    cursor: pointer;
-    touch-action: manipulation;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    box-shadow: 0 2px 12px rgba(90, 65, 65, 0.06);
-    transition: all 0.2s;
-    min-height: 40px;
-}
-
-    .hug-back-btn:active {
-        transform: scale(0.94);
-        background: rgba(255, 248, 240, 0.90);
-    }
-
-/* ── floating hearts ── */
-.heart-particle {
-    position: fixed;
-    pointer-events: none;
-    user-select: none;
-    -webkit-user-select: none;
-    font-size: 1.2rem;
-    opacity: 0;
-    z-index: 1;
-    animation: float-heart-up 5s ease-out forwards;
-}
-
-@keyframes float-heart-up {
-    0% {
-        opacity: 0;
-        transform: translateY(0) scale(0.4) rotate(0deg);
-    }
-
-    10% {
-        opacity: 0.9;
-        transform: translateY(-10px) scale(1) rotate(4deg);
-    }
-
-    90% {
-        opacity: 0.7;
-    }
-
-    100% {
-        opacity: 0;
-        transform: translateY(-400px) scale(0.6) rotate(20deg);
-    }
-}
-
-/* ── game screen ── */
-#screen-game {
-    background: #FFF8F0;
-    padding: 0;
-    justify-content: flex-start;
-}
-
-    #screen-game .game-header {
-        width: 100%;
-        padding: 16px 20px 8px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-shrink: 0;
-        z-index: 5;
-        background: transparent;
-    }
-
-        #screen-game .game-header .game-title {
+        /* ── hug screen ── */
+        #screen-hug {
+            background: #F7D6DF;
+            justify-content: center;
+        }
+        #screen-hug .hug-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            flex: 1;
+            position: relative;
+            padding: 20px 0;
+        }
+        #screen-hug .hug-heart {
+            font-size: 6rem;
+            animation: hug-heart-pulse 1.6s ease-in-out infinite;
+            filter: drop-shadow(0 8px 32px rgba(201, 92, 104, 0.20));
+            line-height: 1;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 2;
+        }
+        @keyframes hug-heart-pulse {
+            0%,
+            100% {
+                transform: scale(1) rotate(-2deg);
+            }
+            50% {
+                transform: scale(1.08) rotate(2deg);
+            }
+        }
+        #screen-hug .hug-title {
             font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            font-size: 2.4rem;
+            color: #C95C68;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+        #screen-hug .hug-squeeze {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 400;
+            font-size: 1.5rem;
+            color: #8a5a5a;
+            text-align: center;
+            margin-top: -2px;
+            z-index: 2;
+            position: relative;
+        }
+        #screen-hug .hug-message {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 400;
+            font-size: 0.95rem;
+            color: #6f5353;
+            text-align: center;
+            margin-top: 18px;
+            line-height: 1.6;
+            z-index: 2;
+            position: relative;
+            max-width: 300px;
+        }
+        #screen-hug .hug-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 18px;
+            width: 100%;
+            max-width: 280px;
+            z-index: 2;
+            position: relative;
+        }
+        #screen-hug .hug-actions .btn {
+            width: 100%;
+            justify-content: center;
+        }
+        .hug-back-btn {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            z-index: 10;
+            background: rgba(255, 248, 240, 0.70);
+            border: none;
+            border-radius: 40px;
+            padding: 8px 16px;
+            font-family: 'Quicksand', sans-serif;
             font-weight: 600;
-            font-size: 1.2rem;
+            font-size: 0.85rem;
             color: #5A4141;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            cursor: pointer;
+            touch-action: manipulation;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 2px 12px rgba(90, 65, 65, 0.06);
+            transition: all 0.2s;
+            min-height: 40px;
+        }
+        .hug-back-btn:active {
+            transform: scale(0.94);
+            background: rgba(255, 248, 240, 0.90);
         }
 
-        #screen-game .game-header .game-score {
-            font-family: 'Quicksand', sans-serif;
+        .heart-particle {
+            position: fixed;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-select: none;
+            font-size: 1.2rem;
+            opacity: 0;
+            z-index: 1;
+            animation: float-heart-up 5s ease-out forwards;
+        }
+        @keyframes float-heart-up {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0.4) rotate(0deg);
+            }
+            10% {
+                opacity: 0.9;
+                transform: translateY(-10px) scale(1) rotate(4deg);
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-400px) scale(0.6) rotate(20deg);
+            }
+        }
+
+        /* ── game screens (flappy & snake) ── */
+        .game-screen {
+            background: #FFF8F0;
+            padding: 0 !important;
+            justify-content: flex-start;
+        }
+        .game-screen .game-header {
+            width: 100%;
+            padding: 12px 16px 6px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            z-index: 5;
+            background: transparent;
+            min-height: 50px;
+            gap: 8px;
+        }
+        .game-screen .game-header .game-title {
+            font-family: 'Dancing Script', cursive;
             font-weight: 600;
             font-size: 1.1rem;
             color: #5A4141;
-            background: rgba(247, 214, 223, 0.40);
-            padding: 4px 16px;
-            border-radius: 40px;
+            white-space: nowrap;
         }
-
-    #screen-game .game-canvas-wrap {
-        flex: 1;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        overflow: hidden;
-    }
-
-    #screen-game canvas {
-        display: block;
-        width: 100%;
-        height: 100%;
-        background: #FFF8F0;
-        touch-action: none;
-        border-radius: 0;
-    }
-
-    #screen-game .game-overlay {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background: rgba(255, 248, 240, 0.75);
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.5s ease;
-        padding: 24px;
-        z-index: 10;
-    }
-
-        #screen-game .game-overlay.active {
+        .game-screen .game-header .game-scores {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #5A4141;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        .game-screen .game-header .game-scores span {
+            background: rgba(247, 214, 223, 0.40);
+            padding: 3px 12px;
+            border-radius: 40px;
+            white-space: nowrap;
+        }
+        .game-screen .game-header .game-scores .high-score {
+            background: rgba(201, 92, 104, 0.12);
+            color: #C95C68;
+        }
+        .game-screen .game-canvas-wrap {
+            flex: 1;
+            min-height: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .game-screen canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: #FFF8F0;
+            touch-action: none;
+            border-radius: 0;
+        }
+        .game-screen .game-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 248, 240, 0.80);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            padding: 24px;
+            z-index: 10;
+        }
+        .game-screen .game-overlay.active {
             opacity: 1;
             pointer-events: auto;
         }
-
-        #screen-game .game-overlay .big-emoji {
+        .game-screen .game-overlay .big-emoji {
             font-size: 3.6rem;
             margin-bottom: 4px;
         }
-
-        #screen-game .game-overlay .overlay-title {
+        .game-screen .game-overlay .overlay-title {
             font-family: 'Dancing Script', cursive;
             font-weight: 700;
             font-size: 2rem;
             color: #5A4141;
             text-align: center;
         }
-
-        #screen-game .game-overlay .overlay-sub {
+        .game-screen .game-overlay .overlay-sub {
             font-family: 'Quicksand', sans-serif;
             font-weight: 400;
             font-size: 1rem;
@@ -724,428 +660,522 @@ body {
             margin: 4px 0 12px 0;
             line-height: 1.5;
         }
-
-        #screen-game .game-overlay .btn {
+        .game-screen .game-overlay .btn {
             margin-top: 4px;
             min-width: 160px;
         }
 
-.game-tap-hint {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 500;
-    font-size: 0.9rem;
-    color: #a08080;
-    background: rgba(255, 248, 240, 0.80);
-    padding: 6px 18px;
-    border-radius: 40px;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    z-index: 3;
-    pointer-events: none;
-    animation: tap-hint-breathe 2s ease-in-out infinite;
-    white-space: nowrap;
-}
-
-@keyframes tap-hint-breathe {
-    0%, 100% {
-        opacity: 0.6;
-        transform: translateX(-50%) scale(1);
-    }
-
-    50% {
-        opacity: 1;
-        transform: translateX(-50%) scale(1.04);
-    }
-}
-
-/* ── quiet screen ── */
-#screen-quiet {
-    background: #FFF8F0;
-}
-
-    #screen-quiet .quiet-moon {
-        font-size: 4.4rem;
-        margin-bottom: 8px;
-        animation: quiet-float 4s ease-in-out infinite;
-    }
-
-@keyframes quiet-float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-12px);
-    }
-}
-
-#screen-quiet .quiet-title {
-    font-family: 'Dancing Script', cursive;
-    font-weight: 700;
-    font-size: 2.2rem;
-    color: #5A4141;
-    text-align: center;
-}
-
-#screen-quiet .quiet-text {
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 400;
-    font-size: 1.0rem;
-    color: #6f5353;
-    text-align: center;
-    line-height: 1.7;
-    max-width: 320px;
-    margin: 6px 0 4px 0;
-}
-
-    #screen-quiet .quiet-text .highlight {
-        color: #C95C68;
-        font-weight: 600;
-    }
-
-#screen-quiet .quiet-mwa {
-    font-family: 'Dancing Script', cursive;
-    font-weight: 700;
-    font-size: 2.8rem;
-    color: #C95C68;
-    text-align: center;
-    margin: 10px 0 6px 0;
-    animation: mwa-pulse 2.2s ease-in-out infinite;
-    letter-spacing: 2px;
-}
-
-@keyframes mwa-pulse {
-    0%, 100% {
-        transform: scale(1) rotate(-1deg);
-    }
-
-    50% {
-        transform: scale(1.06) rotate(1deg);
-    }
-}
-
-#screen-quiet .quiet-btn-wrap {
-    margin-top: 12px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-    #screen-quiet .quiet-btn-wrap .btn {
-        min-width: 160px;
-    }
-
-/* ── stars decoration ── */
-.stars-deco {
-    position: absolute;
-    pointer-events: none;
-    user-select: none;
-    -webkit-user-select: none;
-    font-size: 1.2rem;
-    color: #E8D5C4;
-    opacity: 0.4;
-}
-
-/* ── scrollable content fix ── */
-.scrollable {
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    flex: 1;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 12px 0;
-}
-
-    .scrollable::-webkit-scrollbar {
-        display: none;
-    }
-
-/* ── responsive tweaks ── */
-@media (max-height: 700px) {
-    .illustration {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 8px;
-    }
-
-    #screen-opening .big-hello {
-        font-size: 1.8rem;
-    }
-
-    #screen-opening .sub-text {
-        font-size: 0.92rem;
-    }
-
-    .checklist li {
-        font-size: 0.92rem;
-        padding: 5px 0 5px 28px;
-    }
-
-        .checklist li::before {
-            font-size: 0.95rem;
-            top: 5px;
-        }
-
-    #screen-itinerary .itinerary-title {
-        font-size: 1.5rem;
-        margin-bottom: 8px;
-    }
-
-    .options-grid .btn {
-        padding: 12px 16px;
-        min-height: 48px;
-        font-size: 0.95rem;
-    }
-
-    .deal-section {
-        padding: 12px 16px;
-        margin: 10px 0 8px 0;
-    }
-
-        .deal-section .deal-text {
-            font-size: 0.9rem;
-        }
-
-    #screen-hug .hug-heart {
-        font-size: 4.4rem;
-    }
-
-    #screen-hug .hug-title {
-        font-size: 2rem;
-    }
-
-    #screen-hug .hug-squeeze {
-        font-size: 1.2rem;
-    }
-
-    #screen-quiet .quiet-mwa {
-        font-size: 2.2rem;
-    }
-
-    #screen-quiet .quiet-moon {
-        font-size: 3.4rem;
-    }
-
-    .btn {
-        font-size: 1rem;
-        padding: 12px 24px;
-        min-height: 48px;
-    }
-
-    #screen-opening .btn-wrapper .btn {
-        font-size: 1.05rem;
-        padding: 14px 28px;
-        min-height: 54px;
-    }
-}
-
-@media (max-height: 600px) {
-    .illustration {
-        width: 60px;
-        height: 60px;
-        margin-bottom: 4px;
-    }
-
-    #screen-opening .big-hello {
-        font-size: 1.5rem;
-    }
-
-    #screen-opening .sub-text {
-        font-size: 0.82rem;
-        line-height: 1.4;
-    }
-
-    .checklist li {
-        font-size: 0.82rem;
-        padding: 4px 0 4px 24px;
-    }
-
-        .checklist li::before {
-            font-size: 0.8rem;
-            top: 4px;
-        }
-
-    #screen-itinerary .itinerary-title {
-        font-size: 1.2rem;
-        margin-bottom: 4px;
-    }
-
-    .options-grid {
-        gap: 8px;
-    }
-
-        .options-grid .btn {
-            padding: 10px 14px;
-            min-height: 40px;
+        .game-tap-hint {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 500;
             font-size: 0.85rem;
+            color: #a08080;
+            background: rgba(255, 248, 240, 0.80);
+            padding: 5px 16px;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 3;
+            pointer-events: none;
+            animation: tap-hint-breathe 2s ease-in-out infinite;
+            white-space: nowrap;
+        }
+        @keyframes tap-hint-breathe {
+            0%,
+            100% {
+                opacity: 0.6;
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1.04);
+            }
         }
 
-    .deal-section {
-        padding: 8px 14px;
-        margin: 6px 0 4px 0;
-    }
+        /* ── quiet screen ── */
+        #screen-quiet {
+            background: #FFF8F0;
+        }
+        #screen-quiet .quiet-moon {
+            font-size: 4.4rem;
+            margin-bottom: 8px;
+            animation: quiet-float 4s ease-in-out infinite;
+        }
+        @keyframes quiet-float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+        #screen-quiet .quiet-title {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            font-size: 2.2rem;
+            color: #5A4141;
+            text-align: center;
+        }
+        #screen-quiet .quiet-text {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 400;
+            font-size: 1.0rem;
+            color: #6f5353;
+            text-align: center;
+            line-height: 1.7;
+            max-width: 320px;
+            margin: 6px 0 4px 0;
+        }
+        #screen-quiet .quiet-text .highlight {
+            color: #C95C68;
+            font-weight: 600;
+        }
+        #screen-quiet .quiet-mwa {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            font-size: 2.8rem;
+            color: #C95C68;
+            text-align: center;
+            margin: 10px 0 6px 0;
+            animation: mwa-pulse 2.2s ease-in-out infinite;
+            letter-spacing: 2px;
+        }
+        @keyframes mwa-pulse {
+            0%,
+            100% {
+                transform: scale(1) rotate(-1deg);
+            }
+            50% {
+                transform: scale(1.06) rotate(1deg);
+            }
+        }
+        #screen-quiet .quiet-btn-wrap {
+            margin-top: 12px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        #screen-quiet .quiet-btn-wrap .btn {
+            min-width: 160px;
+        }
 
-        .deal-section .deal-text {
+        .stars-deco {
+            position: absolute;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-select: none;
+            font-size: 1.2rem;
+            color: #E8D5C4;
+            opacity: 0.4;
+        }
+
+        .scrollable {
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            flex: 1;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px 0;
+        }
+        .scrollable::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* ── responsive ── */
+        @media (max-height: 700px) {
+            .illustration {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 8px;
+            }
+            #screen-opening .big-hello {
+                font-size: 1.8rem;
+            }
+            #screen-opening .sub-text {
+                font-size: 0.92rem;
+            }
+            .checklist li {
+                font-size: 0.92rem;
+                padding: 5px 0 5px 28px;
+            }
+            .checklist li::before {
+                font-size: 0.95rem;
+                top: 5px;
+            }
+            #screen-itinerary .itinerary-title {
+                font-size: 1.5rem;
+                margin-bottom: 8px;
+            }
+            .options-grid .btn {
+                padding: 12px 16px;
+                min-height: 48px;
+                font-size: 0.95rem;
+            }
+            .deal-section {
+                padding: 12px 16px;
+                margin: 10px 0 8px 0;
+            }
+            .deal-section .deal-text {
+                font-size: 0.9rem;
+            }
+            #screen-hug .hug-heart {
+                font-size: 4.4rem;
+            }
+            #screen-hug .hug-title {
+                font-size: 2rem;
+            }
+            #screen-hug .hug-squeeze {
+                font-size: 1.2rem;
+            }
+            #screen-quiet .quiet-mwa {
+                font-size: 2.2rem;
+            }
+            #screen-quiet .quiet-moon {
+                font-size: 3.4rem;
+            }
+            .btn {
+                font-size: 1rem;
+                padding: 12px 24px;
+                min-height: 48px;
+            }
+            #screen-opening .btn-wrapper .btn {
+                font-size: 1.05rem;
+                padding: 14px 28px;
+                min-height: 54px;
+            }
+            .game-screen .game-header .game-title {
+                font-size: 1rem;
+            }
+            .game-screen .game-header .game-scores {
+                font-size: 0.75rem;
+            }
+            .game-screen .game-header .game-scores span {
+                padding: 2px 10px;
+            }
+        }
+        @media (max-height: 600px) {
+            .illustration {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 4px;
+            }
+            #screen-opening .big-hello {
+                font-size: 1.5rem;
+            }
+            #screen-opening .sub-text {
+                font-size: 0.82rem;
+                line-height: 1.4;
+            }
+            .checklist li {
+                font-size: 0.82rem;
+                padding: 4px 0 4px 24px;
+            }
+            .checklist li::before {
+                font-size: 0.8rem;
+                top: 4px;
+            }
+            #screen-itinerary .itinerary-title {
+                font-size: 1.2rem;
+                margin-bottom: 4px;
+            }
+            .options-grid {
+                gap: 8px;
+            }
+            .options-grid .btn {
+                padding: 10px 14px;
+                min-height: 40px;
+                font-size: 0.85rem;
+            }
+            .deal-section {
+                padding: 8px 14px;
+                margin: 6px 0 4px 0;
+            }
+            .deal-section .deal-text {
+                font-size: 0.8rem;
+            }
+            .deal-check .box {
+                width: 22px;
+                height: 22px;
+                font-size: 0.9rem;
+            }
+            .deal-check .label {
+                font-size: 0.85rem;
+            }
+            #screen-hug .hug-heart {
+                font-size: 3.6rem;
+            }
+            #screen-hug .hug-title {
+                font-size: 1.6rem;
+            }
+            #screen-hug .hug-squeeze {
+                font-size: 1rem;
+            }
+            #screen-hug .hug-message {
+                font-size: 0.8rem;
+                margin-top: 10px;
+            }
+            #screen-quiet .quiet-mwa {
+                font-size: 1.8rem;
+            }
+            #screen-quiet .quiet-moon {
+                font-size: 2.8rem;
+            }
+            #screen-quiet .quiet-text {
+                font-size: 0.85rem;
+            }
+            .btn {
+                font-size: 0.85rem;
+                padding: 10px 18px;
+                min-height: 40px;
+            }
+            #screen-opening .btn-wrapper .btn {
+                font-size: 0.95rem;
+                padding: 12px 22px;
+                min-height: 46px;
+            }
+            .hug-back-btn {
+                font-size: 0.75rem;
+                padding: 6px 12px;
+                min-height: 32px;
+                top: 10px;
+                left: 10px;
+            }
+            .game-screen .game-header {
+                padding: 8px 12px 4px 12px;
+                min-height: 40px;
+            }
+            .game-screen .game-header .game-title {
+                font-size: 0.9rem;
+            }
+            .game-screen .game-header .game-scores {
+                font-size: 0.7rem;
+            }
+            .game-screen .game-header .game-scores span {
+                padding: 2px 8px;
+            }
+            .game-tap-hint {
+                bottom: 20px;
+                font-size: 0.75rem;
+                padding: 4px 12px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            #screen-opening .btn-wrapper .btn {
+                animation: none;
+            }
+            .heart-particle {
+                animation-duration: 3s !important;
+            }
+            #screen-hug .hug-heart {
+                animation: none;
+            }
+            #screen-quiet .quiet-moon {
+                animation: none;
+            }
+            #screen-quiet .quiet-mwa {
+                animation: none;
+            }
+            .game-tap-hint {
+                animation: none;
+            }
+        }
+
+        .mt-4 {
+            margin-top: 4px;
+        }
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-12 {
+            margin-top: 12px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mb-4 {
+            margin-bottom: 4px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .gap-4 {
+            gap: 4px;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .w-full {
+            width: 100%;
+        }
+        .flex-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .flex-1 {
+            flex: 1;
+        }
+        .relative {
+            position: relative;
+        }
+        .z-10 {
+            z-index: 10;
+        }
+        .game-back-btn {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            z-index: 10;
+            background: rgba(255, 248, 240, 0.75);
+            border: none;
+            border-radius: 40px;
+            padding: 6px 14px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
             font-size: 0.8rem;
+            color: #5A4141;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            cursor: pointer;
+            touch-action: manipulation;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 2px 12px rgba(90, 65, 65, 0.06);
+            transition: all 0.2s;
+            min-height: 36px;
+        }
+        .game-back-btn:active {
+            transform: scale(0.94);
+            background: rgba(255, 248, 240, 0.95);
         }
 
-    .deal-check .box {
-        width: 22px;
-        height: 22px;
-        font-size: 0.9rem;
-    }
+        /* ── snake controls (mobile) ── */
+        .snake-controls {
+            display: none;
+            gap: 6px;
+            padding: 8px 12px 12px 12px;
+            flex-shrink: 0;
+            width: 100%;
+            justify-content: center;
+            background: transparent;
+            z-index: 4;
+            position: relative;
+        }
+        .snake-controls .ctrl-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(247, 214, 223, 0.50);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            font-size: 1.6rem;
+            color: #5A4141;
+            cursor: pointer;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-touch-callout: none;
+            box-shadow: 0 2px 12px rgba(90, 65, 65, 0.06);
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            line-height: 1;
+        }
+        .snake-controls .ctrl-btn:active {
+            transform: scale(0.92);
+            background: rgba(233, 169, 184, 0.40);
+        }
+        .snake-controls .ctrl-grid {
+            display: grid;
+            grid-template-columns: 56px 56px 56px;
+            grid-template-rows: 56px 56px;
+            gap: 4px;
+        }
+        .snake-controls .ctrl-grid .ctrl-up {
+            grid-column: 2;
+            grid-row: 1;
+        }
+        .snake-controls .ctrl-grid .ctrl-left {
+            grid-column: 1;
+            grid-row: 2;
+        }
+        .snake-controls .ctrl-grid .ctrl-down {
+            grid-column: 2;
+            grid-row: 2;
+        }
+        .snake-controls .ctrl-grid .ctrl-right {
+            grid-column: 3;
+            grid-row: 2;
+        }
 
-    .deal-check .label {
-        font-size: 0.85rem;
-    }
+        @media (pointer: coarse) {
+            .snake-controls {
+                display: flex !important;
+            }
+        }
+        @media (max-height: 650px) {
+            .snake-controls .ctrl-btn {
+                width: 44px;
+                height: 44px;
+                font-size: 1.2rem;
+            }
+            .snake-controls .ctrl-grid {
+                grid-template-columns: 44px 44px 44px;
+                grid-template-rows: 44px 44px;
+                gap: 3px;
+            }
+            .snake-controls {
+                padding: 4px 8px 8px 8px;
+            }
+        }
+        @media (max-height: 550px) {
+            .snake-controls .ctrl-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
+            .snake-controls .ctrl-grid {
+                grid-template-columns: 36px 36px 36px;
+                grid-template-rows: 36px 36px;
+                gap: 2px;
+            }
+            .snake-controls {
+                padding: 2px 6px 6px 6px;
+            }
+        }
 
-    #screen-hug .hug-heart {
-        font-size: 3.6rem;
-    }
-
-    #screen-hug .hug-title {
-        font-size: 1.6rem;
-    }
-
-    #screen-hug .hug-squeeze {
-        font-size: 1rem;
-    }
-
-    #screen-hug .hug-message {
-        font-size: 0.8rem;
-        margin-top: 10px;
-    }
-
-    #screen-quiet .quiet-mwa {
-        font-size: 1.8rem;
-    }
-
-    #screen-quiet .quiet-moon {
-        font-size: 2.8rem;
-    }
-
-    #screen-quiet .quiet-text {
-        font-size: 0.85rem;
-    }
-
-    .btn {
-        font-size: 0.85rem;
-        padding: 10px 18px;
-        min-height: 40px;
-    }
-
-    #screen-opening .btn-wrapper .btn {
-        font-size: 0.95rem;
-        padding: 12px 22px;
-        min-height: 46px;
-    }
-
-    .hug-back-btn {
-        font-size: 0.75rem;
-        padding: 6px 12px;
-        min-height: 32px;
-        top: 10px;
-        left: 10px;
-    }
-}
-
-/* ── reduced motion ── */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-
-    #screen-opening .btn-wrapper .btn {
-        animation: none;
-    }
-
-    .heart-particle {
-        animation-duration: 3s !important;
-    }
-
-    #screen-hug .hug-heart {
-        animation: none;
-    }
-
-    #screen-quiet .quiet-moon {
-        animation: none;
-    }
-
-    #screen-quiet .quiet-mwa {
-        animation: none;
-    }
-
-    .game-tap-hint {
-        animation: none;
-    }
-}
-
-/* ── utilities ── */
-.mt-4 {
-    margin-top: 4px;
-}
-
-.mt-8 {
-    margin-top: 8px;
-}
-
-.mt-12 {
-    margin-top: 12px;
-}
-
-.mt-16 {
-    margin-top: 16px;
-}
-
-.mb-4 {
-    margin-bottom: 4px;
-}
-
-.mb-8 {
-    margin-bottom: 8px;
-}
-
-.gap-4 {
-    gap: 4px;
-}
-
-.gap-8 {
-    gap: 8px;
-}
-
-.text-center {
-    text-align: center;
-}
-
-.w-full {
-    width: 100%;
-}
-
-.flex-col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.flex-1 {
-    flex: 1;
-}
-
-.relative {
-    position: relative;
-}
-
-.z-10 {
-    z-index: 10;
-}
+        /* ── fix: bottom not cut off ── */
+        .game-screen .game-canvas-wrap {
+            flex: 1 1 0;
+            min-height: 0;
+        }
+        #screen-game,
+        #screen-snake {
+            padding: 0 !important;
+            overflow: hidden;
+        }
+        #app {
+            overflow: hidden;
+        }
